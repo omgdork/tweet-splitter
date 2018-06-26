@@ -10,6 +10,10 @@ import {
 export const initialState = {
   data: {
     tweets: [],
+    errors: {
+      getTweets: '',
+      sendTweet: '',
+    },
   },
   ui: {
     isGettingTweets: false,
@@ -32,6 +36,10 @@ export default function homeReducer(state = initialState, action) {
         ...state,
         data: {
           tweets: [...action.payload.tweets],
+          errors: {
+            ...state.data.errors,
+            getTweets: '',
+          },
         },
         ui: {
           ...state.ui,
@@ -42,6 +50,13 @@ export default function homeReducer(state = initialState, action) {
     case TWEETS_GET_ERROR: {
       return {
         ...state,
+        data: {
+          ...state.data,
+          errors: {
+            ...state.data.errors,
+            getTweets: action.payload.error,
+          },
+        },
         ui: {
           ...state.ui,
           isGettingTweets: false,
@@ -61,6 +76,10 @@ export default function homeReducer(state = initialState, action) {
         ...state,
         data: {
           tweets: [...state.data.tweets, action.payload.tweet],
+          errors: {
+            ...state.data.errors,
+            sendTweet: '',
+          },
         },
         ui: {
           ...state.ui,
@@ -70,6 +89,13 @@ export default function homeReducer(state = initialState, action) {
     case TWEET_SEND_ERROR:
       return {
         ...state,
+        data: {
+          ...state.data,
+          errors: {
+            ...state.data.errors,
+            sendTweet: action.payload.error,
+          },
+        },
         ui: {
           ...state.ui,
           isSendingTweet: false,

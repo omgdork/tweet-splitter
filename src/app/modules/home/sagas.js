@@ -1,6 +1,5 @@
 import uuid from 'uuid-v4';
-import { delay } from 'redux-saga';
-import { put, takeEvery, call } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import {
   setTweetsGetting,
   getTweetsSuccess,
@@ -12,6 +11,9 @@ import {
 import {
   TWEETS_GET,
   TWEET_SEND,
+  TWEET_SET_ERROR_MESSAGE,
+  TWEET_SEND_ERROR,
+  TWEETS_GET_ERROR,
 } from './constants';
 
 /**
@@ -22,16 +24,17 @@ export function* getTweets() {
     yield put(setTweetsGetting(true));
 
     // TODO: Make a service call.
+    const now = new Date();
     const tweets = [
       {
         id: uuid(),
         text: 'Hello, World!',
-        date: new Date(),
+        date: new Date(now.getTime() + 10),
       },
       {
         id: uuid(),
         text: 'Hello again.',
-        date: new Date(),
+        date: new Date(now.getTime() + 20),
       },
     ];
 
@@ -81,7 +84,32 @@ export function* sendTweetSaga() {
   yield takeEvery(TWEET_SEND, sendTweet);
 }
 
+/**
+ * Sets the error message.
+ * @param {string} errorType - The error type.
+ * @param {string} errorMessage - The error message.
+ */
+export function* setErrorMessage({ payload: { errorType, errorMessage } }) {
+  switch (errorType) {
+    case TWEETS_GET_ERROR:
+      yield put(getTweetsError(errorMessage));
+      break;
+    case TWEET_SEND_ERROR:
+      yield put(sendTweetError(errorMessage));
+      break;
+    default:
+  }
+}
+
+/**
+ * Saga for setting the error message.
+ */
+export function* setErrorMessageSaga() {
+  yield takeEvery(TWEET_SET_ERROR_MESSAGE, setErrorMessage);
+}
+
 export default [
   getTweetsSaga,
   sendTweetSaga,
+  setErrorMessageSaga,
 ];
