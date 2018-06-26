@@ -8,8 +8,9 @@ import {
   getTweets,
   sendTweet,
   setTweetSending,
-  sendTweetError,
+  setErrorMessage,
 } from './actions';
+import { TWEET_SEND_ERROR } from './constants';
 import splitMessage from '../../../utilities/split-message';
 
 class Home extends Component {
@@ -38,7 +39,7 @@ class Home extends Component {
 
       this.props.sendTweet(arrMessage);
     } catch (e) {
-      this.props.sendTweetError(e);
+      this.props.setErrorMessage(TWEET_SEND_ERROR, e);
       this.props.setTweetSending(false);
     }
   };
@@ -50,6 +51,7 @@ class Home extends Component {
           onInputChange={this.typeMessage}
           onSubmit={this.sendMessage}
           isSubmitDisabled={!this.state.tweet.length}
+          error={this.props.home.data.errors.sendTweet}
         />
         <Tweets tweets={this.props.home.data.tweets} />
       </div>
@@ -82,7 +84,7 @@ function mapDispatchToProps(dispatch) {
     getTweets: bindActionCreators(getTweets, dispatch),
     sendTweet: bindActionCreators(sendTweet, dispatch),
     setTweetSending: bindActionCreators(setTweetSending, dispatch),
-    sendTweetError: bindActionCreators(sendTweetError, dispatch),
+    setErrorMessage: bindActionCreators(setErrorMessage, dispatch),
   }
 }
 
