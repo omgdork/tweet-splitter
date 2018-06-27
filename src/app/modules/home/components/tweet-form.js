@@ -29,6 +29,7 @@ class TweetForm extends PureComponent {
         >
           Tweet
         </button>
+        {this.props.error && <p className="error">{this.props.error}</p>}
       </form>
     );
   }
@@ -38,6 +39,7 @@ TweetForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isSubmitDisabled: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default TweetForm;
