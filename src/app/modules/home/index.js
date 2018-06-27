@@ -46,7 +46,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <TweetForm
           onInputChange={this.typeMessage}
           onSubmit={this.sendMessage}

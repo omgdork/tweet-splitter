@@ -16,21 +16,26 @@ class TweetForm extends PureComponent {
 
   render() {
     return (
-      <form>
-        <textarea
-          name="tweet"
-          onChange={this.onInputChange}
-          >
-        </textarea>
-        <button
-          type="button"
-          onClick={this.props.onSubmit}
-          disabled={this.props.isSubmitDisabled}
-        >
-          Tweet
-        </button>
-        {this.props.error && <p className="error">{this.props.error}</p>}
-      </form>
+      <div className="tweet-box">
+        <img className="avatar" src="" alt="" />
+        <form>
+          <textarea
+            name="tweet"
+            onChange={this.onInputChange}
+            >
+          </textarea>
+          <div className="tweet-box-toolbar">
+            {this.props.error && <p className="error">{this.props.error}</p>}
+            <button
+              type="button"
+              onClick={this.props.onSubmit}
+              disabled={this.props.isSubmitDisabled}
+            >
+              Tweet
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

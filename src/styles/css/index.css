@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  outline: none;
+  padding: 0; }
+
+html, body {
+  font: normal 14px/1.4 'Segoe UI', 'Helvetica', 'Arial', sans-serif; }
+
+body {
+  background: #e6ecf0; }
+
+.container {
+  margin: 0 auto;
+  padding: 15px;
+  width: 590px; }
+
+p.error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+  padding: 12px 20px; }
+
+.tweet-box .tweet-box-toolbar:before, .tweet-box .tweet-box-toolbar:after {
+  clear: both;
+  content: '';
+  display: table; }
+
+.tweet-box {
+  background: #e8f5fd;
+  border: 1px solid #e6ecf0;
+  padding: 10px 12px;
+  position: relative; }
+  .tweet-box textarea {
+    background: #fff;
+    border-color: #a4d9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #a4d9f9;
+    height: 100px;
+    line-height: 20px;
+    margin-left: 44px;
+    padding: 8px;
+    resize: none;
+    width: calc(100% - 60px); }
+  .tweet-box .tweet-box-toolbar {
+    margin: 10px 0 0 44px; }
+    .tweet-box .tweet-box-toolbar button {
+      background: #4ab3f4;
+      border: 1px solid #1da1f2;
+      border-radius: 100px;
+      color: #fff;
+      cursor: pointer;
+      float: right;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 16px; }
+      .tweet-box .tweet-box-toolbar button:hover {
+        background: #40aff3;
+        border-color: #139df1; }
+      .tweet-box .tweet-box-toolbar button:disabled {
+        background: #4fb5f4;
+        border-color: #27a5f3; }
+    .tweet-box .tweet-box-toolbar p.error {
+      float: left;
+      padding: 6px 16px; }
+
+.tweets {
+  list-style: none; }
+  .tweets li {
+    background: #fff;
+    border: solid #e6ecf0;
+    border-width: 0 1px 1px;
+    padding: 9px 12px; }
+    .tweets li .tweet-content {
+      margin-left: 44px; }
+      .tweets li .tweet-content .tweet-details a {
+        color: #657786;
+        text-decoration: none; }
+        .tweets li .tweet-content .tweet-details a.handle {
+          margin-right: 5px; }
+          .tweets li .tweet-content .tweet-details a.handle:hover .full-name {
+            color: #1da1f2;
+            text-decoration: underline; }
+          .tweets li .tweet-content .tweet-details a.handle .full-name {
+            color: #000;
+            font-weight: 600;
+            margin-right: 5px; }
+        .tweets li .tweet-content .tweet-details a.timestamp:hover {
+          color: #1da1f2;
+          text-decoration: underline; }
+
+img.avatar {
+  background: #eee;
+  border-radius: 32px;
+  display: inline-block;
+  height: 32px;
+  position: absolute;
+  width: 32px; }
