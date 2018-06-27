@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from './app/store';
 import Home from './app/modules/home';
 import rootSaga from './app/sagas';
+import './styles/css/index.css';
 
 const store = configureStore();
 
