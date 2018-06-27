@@ -11,7 +11,9 @@ class TweetForm extends PureComponent {
     const { name, value } = e.target;
   
     field[name] = value;
-    this.props.onInputChange(field);
+    this.setState(field, () => {
+      this.props.onInputChange(field);
+    });
   };
 
   render() {
@@ -26,6 +28,7 @@ class TweetForm extends PureComponent {
           </textarea>
           <div className="tweet-box-toolbar">
             {this.props.error && <p className="error">{this.props.error}</p>}
+            {this.state.tweet.length + 10 >= this.props.characterLimit && <p className="warning">{this.props.characterLimit - this.state.tweet.length}</p>}
             <button
               type="button"
               onClick={this.props.onSubmit}
@@ -40,11 +43,16 @@ class TweetForm extends PureComponent {
   }
 }
 
+TweetForm.defaultProps = {
+  characterLimit: 50,
+};
+
 TweetForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isSubmitDisabled: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
+  characterLimit: PropTypes.number.isRequired,
 };
 
 export default TweetForm;
