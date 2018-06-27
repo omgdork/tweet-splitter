@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tweet from './tweet';
 
 const Tweets = ({ tweets }) => (
-  <ul>
+  <ul className="tweets">
     {tweets
       .sort((a, b) => b.date - a.date)
       .map((tweet) => <Tweet key={tweet.id} {...tweet} />)}

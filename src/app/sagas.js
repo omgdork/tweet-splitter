@@ -1,8 +1,6 @@
-import { fork } from 'redux-saga/effects';
+import { fork, all } from 'redux-saga/effects';
 import homeSagas from './modules/home/sagas';
 
 export default function* rootSaga() {
-  yield [
-    ...homeSagas.map((saga) => fork(saga)),
-  ];
+  yield all([...homeSagas.map((saga) => fork(saga))]);
 }

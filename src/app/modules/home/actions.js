@@ -7,6 +7,7 @@ import {
   TWEET_SENDING,
   TWEET_SEND_SUCCESS,
   TWEET_SEND_ERROR,
+  TWEET_SET_ERROR_MESSAGE,
 } from './constants';
 
 export function getTweets() {
@@ -74,6 +75,16 @@ export function sendTweetError(error) {
     type: TWEET_SEND_ERROR,
     payload: {
       error,
+    },
+  };
+}
+
+export function setErrorMessage(errorType, errorMessage) {
+  return {
+    type: TWEET_SET_ERROR_MESSAGE,
+    payload: {
+      errorType,
+      errorMessage,
     },
   };
 }

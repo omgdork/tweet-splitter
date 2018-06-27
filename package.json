@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "cross-env": "^5.2.0",
+    "moment": "^2.22.2",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -17,13 +19,16 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "unit-test": "cross-env NODE_ENV=development mocha --compilers js:babel-core/register test/**/*-test.js"
+    "unit-test": "cross-env NODE_ENV=development mocha --compilers js:babel-core/register test/**/*-test.js",
+    "sass:watch": "node-sass --watch --include-path scss src/styles/scss/index.scss src/styles/css/index.css",
+    "sass:build": "node-sass --include-path scss src/styles/scss/index.scss src/styles/css/index.css"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react-app": "^3.1.2",
     "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "node-sass": "^4.9.0"
   },
   "babel": {
     "presets": [

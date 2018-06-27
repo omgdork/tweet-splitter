@@ -1,0 +1,127 @@
+@import '_colors';
+
+%clear-fix {
+  &:before, &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+.tweet-box {
+  background: $tweet-box-background-color;
+  border: 1px solid $tweet-box-border-color;
+  padding: 10px 12px;
+  position: relative;
+
+  textarea {
+    background: $tweet-box-textarea-background-color;
+    border-color: $tweet-box-textarea-border-color;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px $tweet-box-textarea-border-color;
+    height: 100px;
+    line-height: 20px;
+    margin-left: 44px;
+    padding: 8px;
+    resize: none;
+    width: calc(100% - 60px);
+  }
+
+  .tweet-box-toolbar {
+    @extend %clear-fix;
+    align-items: flex-start;
+    display: flex;
+    margin: 10px 0 0 44px;
+
+    button {
+      background: $tweet-box-button-background-color;
+      border: 1px solid $tweet-box-button-border-color;
+      border-radius: 100px;
+      color: $tweet-box-button-font-color;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      margin-left: auto;
+      padding: 6px 16px;
+  
+      &:hover {
+        background: darken($color: $tweet-box-button-background-color, $amount: 2%);
+        border-color: darken($color: $tweet-box-button-border-color, $amount: 2%);
+      }
+  
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+      }
+    }
+
+    p.error {
+      display: inline-block;
+      padding: 6px 16px;
+    }
+
+    p.warning {
+      color: red;
+      display: inline-block;
+      flex: 1;
+      margin: 0 10px;
+      padding: 6px 0;
+      text-align: right;
+    }
+  }
+}
+
+.tweets {
+  list-style: none;
+
+  li {
+    background: $tweet-background-color;
+    border: solid $tweet-border-color;
+    border-width: 0 1px 1px;
+    padding: 9px 12px;
+
+    .tweet-content {
+      margin-left: 44px;
+
+      .tweet-details {
+        a {
+          color: $tweet-details-font-color;
+          text-decoration: none;
+
+          &.handle {
+            margin-right: 5px;
+
+            &:hover {
+              .full-name {
+                color: $link-color;
+                text-decoration: underline;
+              }
+            }
+
+            .full-name {
+              color: $tweet-details-full-name-font-color;
+              font-weight: 600;
+              margin-right: 5px;
+            }
+          }
+
+          &.timestamp {
+            &:hover {
+              color: $link-color;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+img.avatar {
+  background: #eee;
+  border-radius: 32px;
+  display: inline-block;
+  height: 32px;
+  position: absolute;
+  width: 32px;
+}
