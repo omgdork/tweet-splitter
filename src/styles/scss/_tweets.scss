@@ -50,8 +50,8 @@
       }
   
       &:disabled {
-        background: lighten($color: $tweet-box-button-background-color, $amount: 1%);
-        border-color: lighten($color: $tweet-box-button-border-color, $amount: 2%);
+        cursor: not-allowed;
+        opacity: 0.3;
       }
     }
 
