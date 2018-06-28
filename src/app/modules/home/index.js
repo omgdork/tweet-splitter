@@ -12,6 +12,7 @@ import {
 } from './actions';
 import { TWEET_SEND_ERROR } from './constants';
 import splitMessage from '../../../utilities/split-message';
+import MainLayout from '../../layouts/main-layout';
 
 class Home extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="container">
+      <MainLayout>
         <TweetForm
           onInputChange={this.typeMessage}
           onSubmit={this.sendMessage}
@@ -54,7 +55,7 @@ class Home extends Component {
           error={this.props.home.data.errors.sendTweet}
         />
         <Tweets tweets={this.props.home.data.tweets} />
-      </div>
+      </MainLayout>
     );
   }
 }
