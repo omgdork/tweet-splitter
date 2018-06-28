@@ -1,6 +1,5 @@
 import Home from './modules/home';
 import Notifications from './modules/notifications';
-import Test from './modules/test';
 
 const routes = [
   {
@@ -13,11 +12,6 @@ const routes = [
     name: 'Notifications',
     component: Notifications,
     path: '/notifications',
-  },
-  {
-    name: 'Test Route',
-    component: Test,
-    path: '/test',
   },
 ];
 
