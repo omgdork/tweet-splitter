@@ -14,9 +14,12 @@ body {
   background: $background-color;
 }
 
+main {
+  margin: 10px;
+}
+
 .container {
   margin: 0 auto;
-  padding: 15px;
   width: 590px;
 }
 
@@ -26,4 +29,13 @@ p.error {
   border-radius: 4px;
   color: $error-font-color;
   padding: 12px 20px;
+}
+
+/* Mixins */
+%clear-fix {
+  &:before, &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
 }
