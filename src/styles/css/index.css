@@ -9,9 +9,11 @@ html, body {
 body {
   background: #e6ecf0; }
 
+main {
+  margin: 10px; }
+
 .container {
   margin: 0 auto;
-  padding: 15px;
   width: 590px; }
 
 p.error {
@@ -21,10 +23,29 @@ p.error {
   color: #721c24;
   padding: 12px 20px; }
 
-.tweet-box .tweet-box-toolbar:before, .tweet-box .tweet-box-toolbar:after {
+/* Mixins */
+nav ul:before, .tweet-box .tweet-box-toolbar:before, nav ul:after, .tweet-box .tweet-box-toolbar:after {
   clear: both;
   content: '';
   display: table; }
+
+nav {
+  background: #fff; }
+  nav ul {
+    list-style: none; }
+    nav ul li {
+      float: left; }
+      nav ul li a {
+        color: #66757f;
+        display: block;
+        font-weight: 600;
+        height: 46px;
+        line-height: 46px;
+        padding: 0 14px;
+        text-decoration: none; }
+        nav ul li a.active, nav ul li a:hover {
+          border-bottom: 2px solid #1da1f2;
+          color: #1da1f2; }
 
 .tweet-box {
   background: #e8f5fd;
