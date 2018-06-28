@@ -16,6 +16,12 @@ class TweetForm extends PureComponent {
     });
   };
 
+  clearTweet() {
+    this.setState({
+      tweet: '',
+    });
+  }
+
   render() {
     return (
       <div className="tweet-box">
@@ -32,7 +38,7 @@ class TweetForm extends PureComponent {
             <button
               type="button"
               onClick={this.props.onSubmit}
-              disabled={this.props.isSubmitDisabled}
+              disabled={!this.state.tweet.length}
             >
               Tweet
             </button>
@@ -50,7 +56,6 @@ TweetForm.defaultProps = {
 TweetForm.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  isSubmitDisabled: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   characterLimit: PropTypes.number.isRequired,
 };
