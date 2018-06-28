@@ -51,7 +51,6 @@ class Home extends Component {
         <TweetForm
           onInputChange={this.typeMessage}
           onSubmit={this.sendMessage}
-          isSubmitDisabled={!this.state.tweet.length}
           error={this.props.home.data.errors.sendTweet}
         />
         <Tweets tweets={this.props.home.data.tweets} />

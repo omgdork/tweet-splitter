@@ -1,5 +1,6 @@
 import uuid from 'uuid-v4';
-import { put, takeEvery } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import {
   setTweetsGetting,
   getTweetsSuccess,
@@ -15,6 +16,10 @@ import {
   TWEET_SEND_ERROR,
   TWEETS_GET_ERROR,
 } from './constants';
+import {
+  getTweets as getTweetsFromStorage,
+  sendTweet as sendTweetToStorage,
+} from '../../../utilities/tweets';
 
 /**
  * Gets the tweets.
@@ -24,21 +29,7 @@ export function* getTweets() {
     yield put(setTweetsGetting(true));
 
     // TODO: Make a service call.
-    const now = new Date();
-    const tweets = [
-      {
-        id: uuid(),
-        text: 'Hello, World!',
-        date: new Date(now.getTime() + 10),
-      },
-      {
-        id: uuid(),
-        text: 'Hello again.',
-        date: new Date(now.getTime() + 20),
-      },
-    ];
-
-    yield put(getTweetsSuccess(tweets));
+    yield put(getTweetsSuccess(getTweetsFromStorage()));
   } catch (e) {
     yield put(getTweetsError(e));
   } finally {
@@ -62,14 +53,19 @@ export function* sendTweet({ payload: { tweet }}) {
     yield put(setTweetSending(true));
 
     // TODO: Make a service call.
-    const now = new Date();
-    const parts = tweet.map((part, i) => ({
-      id: uuid(),
-      text: part,
-      date: new Date(now.getTime() + i * 10),
-    }));
+    yield tweet.map(function* (part) {
+      yield call(delay, 500);
 
-    yield parts.map((part) => put(sendTweetSuccess(part)));
+      const chunk = {
+        id: uuid(),
+        text: part,
+        date: new Date(),
+      };
+
+      sendTweetToStorage(chunk);
+
+      return yield put(sendTweetSuccess(chunk));
+    });
   } catch (e) {
     yield put(sendTweetError(e));
   } finally {
