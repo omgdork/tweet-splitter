@@ -45,7 +45,8 @@ nav {
         text-decoration: none; }
         nav ul li a.active, nav ul li a:hover {
           border-bottom: 2px solid #1da1f2;
-          color: #1da1f2; }
+          color: #1da1f2;
+          height: 44px; }
 
 .tweet-box {
   background: #e8f5fd;
