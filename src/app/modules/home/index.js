@@ -39,6 +39,9 @@ class Home extends Component {
       const arrMessage = splitMessage(tweet);
 
       this.props.sendTweet(arrMessage);
+      this.setState({
+        tweet: '',
+      });
     } catch (e) {
       this.props.setErrorMessage(TWEET_SEND_ERROR, e);
       this.props.setTweetSending(false);
@@ -49,6 +52,7 @@ class Home extends Component {
     return (
       <MainLayout>
         <TweetForm
+          tweet={this.state.tweet}
           onInputChange={this.typeMessage}
           onSubmit={this.sendMessage}
           error={this.props.home.data.errors.sendTweet}

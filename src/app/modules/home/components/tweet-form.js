@@ -2,25 +2,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 class TweetForm extends PureComponent {
-  state = {
-    tweet: '',
-  };
-
   onInputChange = (e) => {
     const field = {};
     const { name, value } = e.target;
   
     field[name] = value;
-    this.setState(field, () => {
-      this.props.onInputChange(field);
-    });
+    this.props.onInputChange(field);
   };
-
-  clearTweet() {
-    this.setState({
-      tweet: '',
-    });
-  }
 
   render() {
     return (
@@ -30,15 +18,16 @@ class TweetForm extends PureComponent {
           <textarea
             name="tweet"
             onChange={this.onInputChange}
+            value={this.props.tweet}
             >
           </textarea>
           <div className="tweet-box-toolbar">
             {this.props.error && <p className="error">{this.props.error}</p>}
-            {this.state.tweet.length + 10 >= this.props.characterLimit && <p className="warning">{this.props.characterLimit - this.state.tweet.length}</p>}
+            {this.props.tweet.length + 10 >= this.props.characterLimit && <p className="warning">{this.props.characterLimit - this.props.tweet.length}</p>}
             <button
               type="button"
               onClick={this.props.onSubmit}
-              disabled={!this.state.tweet.length}
+              disabled={!this.props.tweet.length}
             >
               Tweet
             </button>
@@ -51,6 +40,7 @@ class TweetForm extends PureComponent {
 
 TweetForm.defaultProps = {
   characterLimit: 50,
+  tweet: '',
 };
 
 TweetForm.propTypes = {
@@ -58,6 +48,7 @@ TweetForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
   characterLimit: PropTypes.number.isRequired,
+  tweet: PropTypes.string.isRequired,
 };
 
 export default TweetForm;
